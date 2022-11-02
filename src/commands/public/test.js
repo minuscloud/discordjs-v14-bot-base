@@ -7,7 +7,6 @@ module.exports = {
   async execute(interaction, client) {
     await interaction.reply({
       content: "test",
-      ephemeral: true,
     });
   },
 };

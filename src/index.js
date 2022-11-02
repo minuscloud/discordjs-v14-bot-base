@@ -14,6 +14,9 @@ const client = new Client({
 });
 
 client.commands = new Collection();
+client.buttons = new Collection();
+client.selectMenus = new Collection();
+client.modals = new Collection();
 client.commandArray = [];
 
 const handlerFolder = fs
@@ -25,4 +28,5 @@ for (const file of handlerFolder) {
 
 client.handleCommands();
 client.handleEvents();
+client.handleComponents();
 client.login(token);
