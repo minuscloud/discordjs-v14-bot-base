@@ -13,7 +13,7 @@ module.exports = (client) => {
       switch (folder) {
         case "buttons":
           for (const file of componentFiles) {
-            const button = require(`../../components/${folder}/${file}`);
+            const button = require(`../components/${folder}/${file}`);
             buttons.set(button.data.name, button);
             console.log(`Buttons: ${button.data.name} has passed the handler`);
           }
@@ -21,7 +21,7 @@ module.exports = (client) => {
 
         case "selectMenus":
           for (const file of componentFiles) {
-            const menu = require(`../../components/${folder}/${file}`);
+            const menu = require(`../components/${folder}/${file}`);
             selectMenus.set(menu.data.name, menu);
             console.log(`Menus: ${menu.data.name} has passed the handler`);
           }
@@ -29,7 +29,7 @@ module.exports = (client) => {
 
         case "modalMenus":
           for (const file of componentFiles) {
-            const modal = require(`../../components/${folder}/${file}`);
+            const modal = require(`../components/${folder}/${file}`);
             modals.set(modal.data.name, modal);
             console.log(`Modals: ${modal.data.name} has passed the handler`);
           }
