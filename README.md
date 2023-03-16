@@ -10,7 +10,7 @@ Add your Bot token to the .env file
 
 https://github.com/cloudfps/discordjs-v14-bot-base/blob/main/.env
 
-Ad you Bot ID:
+Ad your Bot ID:
 
 https://github.com/cloudfps/discordjs-v14-bot-base/blob/main/src/functions/handlers/handleCommands.js
 
