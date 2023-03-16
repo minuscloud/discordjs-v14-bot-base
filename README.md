@@ -1,9 +1,19 @@
 # discordjs v14
-This is a Base for a Discord Bot in Version 14
+This is a Base for a Discord Bot in Version 14.8.0
 
-Installation: 
+This Bot Base is updated to the newest discord.js version
 
-add your bot token at https://github.com/cloudfps/discordjs-v14-tutorial-series/blob/main/.env
+This Source will provide ready to use command-, event- and componenthandlers,
+with these handlers you can easily build your discord bot with slash commands you can simply implement buttons, menus or autocompletes i included some examples.
 
+Setup:
 
-Enter your Application ID and Guild ID at https://github.com/cloudfps/discordjs-v14-tutorial-series/blob/main/src/handlers/handleCommands.js
+Add your Bot token to the .env file 
+
+https://github.com/cloudfps/discordjs-v14-bot-base/blob/main/.env
+
+Ad you Bot ID:
+
+https://github.com/cloudfps/discordjs-v14-bot-base/blob/main/src/functions/handlers/handleCommands.js
+
+Then you are good to go you can now start your bot and build your commands
