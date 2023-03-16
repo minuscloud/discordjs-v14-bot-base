@@ -14,4 +14,4 @@ Ad your Bot ID:
 
 https://github.com/cloudfps/discordjs-v14-bot-base/blob/main/src/functions/handlers/handleCommands.js
 
-Then you are good to go you can now start your bot and build your commands
+Then you are good to go, you can now start your bot and build your commands
