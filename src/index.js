@@ -12,21 +12,22 @@ const client = new Client({
     GatewayIntentBits.GuildMembers,
   ],
 });
-
 client.commands = new Collection();
 client.buttons = new Collection();
 client.selectMenus = new Collection();
-client.modals = new Collection();
+client.modalMenus = new Collection();
 client.commandArray = [];
 
-const handlerFolder = fs
-  .readdirSync(`./src/handlers`)
-  .filter((file) => file.endsWith(".js"));
-for (const file of handlerFolder) {
-  require(`./handlers/${file}`)(client);
+const functionFolder = fs.readdirSync(`./src/functions`);
+for (const folder of functionFolder) {
+  const functionFiles = fs
+    .readdirSync(`./src/functions/${folder}`)
+    .filter((file) => file.endsWith(".js"));
+  for (const file of functionFiles)
+    require(`./functions/${folder}/${file}`)(client);
 }
 
-client.handleCommands();
 client.handleEvents();
+client.handleCommands();
 client.handleComponents();
 client.login(token);

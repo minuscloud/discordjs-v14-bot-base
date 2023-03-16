@@ -4,32 +4,29 @@ const fs = require("fs");
 
 module.exports = (client) => {
   client.handleCommands = async () => {
-    const commandFolder = fs.readdirSync("./src/commands");
-    for (const folder of commandFolder) {
+    const commandFolders = fs.readdirSync("./src/commands");
+    for (const folder of commandFolders) {
       const commandFiles = fs
         .readdirSync(`./src/commands/${folder}`)
         .filter((file) => file.endsWith(".js"));
 
       const { commands, commandArray } = client;
-
       for (const file of commandFiles) {
-        const command = require(`../commands/${folder}/${file}`);
+        const command = require(`../../commands/${folder}/${file}`);
         commands.set(command.data.name, command);
         commandArray.push(command.data.toJSON());
-        console.log(`${command.data.name} has been passed`);
+        console.log(`Command: ${command.data.name} has passed the handler`);
       }
     }
 
-    const clientID = "YOURID";
-    const guildID = "YOURID";
-
-    const rest = new REST({ version: "9" }).setToken(process.env.token);
-
+    const clientId = "YOUR ID";
+    const rest = new REST({ version: "10" }).setToken(process.env.token);
     try {
-      await rest.put(Routes.applicationGuildCommands(clientID, guildID), {
+      console.log("Starting to register all (/) commands");
+      await rest.put(Routes.applicationCommands(clientId), {
         body: client.commandArray,
       });
-      console.log("Commands refreshed");
+      console.log("Successfully registered all (/) commands");
     } catch (error) {
       console.error(error);
     }
