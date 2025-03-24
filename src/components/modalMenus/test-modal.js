@@ -1,10 +1,15 @@
+const { MessageFlags } = require("discord.js");
+
 module.exports = {
-    data: {
-      name: "test-modal"
-    },
-    async execute(interaction, client) {
+  data: {
+      name: "test-modal",
+  },
+  async execute(interaction, client) {
+      const userInput = interaction.fields.getTextInputValue("modal-input");
+      
       await interaction.reply({
-        content: `test`,
+          content: `You entered: ${userInput}`,
+          flags: MessageFlags.Ephemeral,
       });
-    },
-  };
+  },
+};

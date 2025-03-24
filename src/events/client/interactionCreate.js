@@ -1,98 +1,53 @@
-const { InteractionType } = require("discord.js");
+const { InteractionType, MessageFlags } = require("discord.js");
+
+const handleError = async (interaction, errorMessage) => {
+  console.error(errorMessage);
+  await interaction.reply({
+    content: `Something went wrong: ${errorMessage}`,
+    flags: MessageFlags.Ephemeral,
+  });
+};
 
 module.exports = {
   name: "interactionCreate",
   async execute(interaction, client) {
-    if (interaction.isChatInputCommand()) {
-      const { commands } = client;
-      const { commandName } = interaction;
-      const command = commands.get(commandName);
-      if (!command) return;
+    const { commands, buttons, selectMenus, modals } = client;
+    const { commandName, customId, type } = interaction;
 
-      try {
+    try {
+      if (interaction.isChatInputCommand()) {
+        const command = commands.get(commandName);
+        if (!command) return;
         await command.execute(interaction, client);
-      } catch (error) {
-        console.error(error);
-        await interaction.reply({
-          content: `Something went wrong while executing this command.`,
-          ephemeral: true,
-        });
-      }
-    } else if (interaction.isButton()) {
-      const { buttons } = client;
-      const { customId } = interaction;
-      const button = buttons.get(customId);
-      if (!button) return;
 
-      try {
+      } else if (interaction.isButton()) {
+        const button = buttons.get(customId);
+        if (!button) return;
         await button.execute(interaction, client);
-      } catch (error) {
-        console.error(error);
-        await interaction.reply({
-          content: `Something went wrong while executing this button.`,
-          ephemeral: true,
-        });
-      }
-    } else if (interaction.isSelectMenu()) {
-      const { selectMenus } = client;
-      const { customId } = interaction;
-      const menu = selectMenus.get(customId);
-      if (!menu) return;
 
-      try {
+      } else if (interaction.isStringSelectMenu()) {
+        const menu = selectMenus.get(customId);
+        if (!menu) return;
         await menu.execute(interaction, client);
-      } catch (error) {
-        console.error(error);
-        await interaction.reply({
-          content: `Something went wrong while executing this select menu.`,
-          ephemeral: true,
-        });
-      }
-    } else if (interaction.type == InteractionType.ModalSubmit) {
-      const { modals } = client;
-      const { customId } = interaction;
-      const modal = modals.get(customId);
-      if (!modal) return;
 
-      try {
+      } else if (type === InteractionType.ModalSubmit) {
+        const modal = modals.get(customId);
+        if (!modal) return;
         await modal.execute(interaction, client);
-      } catch (error) {
-        console.error(error);
-        await interaction.reply({
-          content: `Something went wrong while executing this modal.`,
-          ephemeral: true,
-        });
-      }
-    } else if (interaction.isContextMenuCommand()) {
-      const { commands } = client;
-      const { commandName } = interaction;
-      const contextCommand = commands.get(commandName);
-      if (!contextCommand) return;
 
-      try {
+      } else if (interaction.isContextMenuCommand()) {
+        const contextCommand = commands.get(commandName);
+        if (!contextCommand) return;
         await contextCommand.execute(interaction, client);
-      } catch (error) {
-        console.error(error);
-        await interaction.reply({
-          content: `Something went wrong while executing this context command.`,
-          ephemeral: true,
-        });
-      }
-    } else if (interaction.isAutocomplete()) {
-      const { commands } = client;
-      const { commandName } = interaction;
-      const command = commands.get(commandName);
-      if (!command) return;
 
-      try {
+      } else if (interaction.isAutocomplete()) {
+        const command = commands.get(commandName);
+        if (!command) return;
         await command.autocomplete(interaction, client);
-      } catch (error) {
-        console.error(error);
-        await interaction.reply({
-          content: `Something went wrong while executing this autocomplete command.`,
-          ephemeral: true,
-        });
+        
       }
+    } catch (error) {
+      await handleError(interaction, `Error processing interaction of type ${type}`);
     }
   },
 };

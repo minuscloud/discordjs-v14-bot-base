@@ -2,41 +2,54 @@ const fs = require("fs");
 
 module.exports = (client) => {
   client.handleComponents = async () => {
-    const componentFolders = fs.readdirSync("./src/components");
-    for (const folder of componentFolders) {
-      const componentFiles = fs
-        .readdirSync(`./src/components/${folder}`)
-        .filter((file) => file.endsWith(".js"));
+    try {
+      const componentFolders = fs.readdirSync("./src/components");
+      const { buttons, selectMenus, modals } = client;
 
-      const { buttons, selectMenus, modalMenus } = client;
+      console.log("Starting to handle components...");
 
-      switch (folder) {
-        case "buttons":
-          for (const file of componentFiles) {
-            const button = require(`../../components/${folder}/${file}`);
-            buttons.set(button.data.name, button);
-            console.log(`Buttons: ${button.data.name} has passed the handler`);
-          }
-          break;
+      // Loop through each folder inside components
+      for (const folder of componentFolders) {
+        const componentFiles = fs
+          .readdirSync(`./src/components/${folder}`)
+          .filter((file) => file.endsWith(".js"));
 
-        case "selectMenus":
-          for (const file of componentFiles) {
-            const menu = require(`../../components/${folder}/${file}`);
-            selectMenus.set(menu.data.name, menu);
-            console.log(`Menus: ${menu.data.name} has passed the handler`);
-          }
-          break;
+        if (componentFiles.length === 0) {
+          console.log(`No component files found in folder: ${folder}`);
+          continue;
+        }
 
-        case "modalMenus":
-          for (const file of componentFiles) {
-            const modal = require(`../../components/${folder}/${file}`);
-            modalMenus.set(modal.data.name, modal);
-            console.log(`Modals: ${modal.data.name} has passed the handler`);
-          }
-          break;
-        default:
-          break;
+        await Promise.all(
+          componentFiles.map(async (file) => {
+            const component = require(`../../components/${folder}/${file}`);
+
+            switch (folder) {
+              case "buttons":
+                buttons.set(component.data.name, component);
+                console.log(`Button: ${component.data.name} has passed the handler.`);
+                break;
+
+              case "selectMenus":
+                selectMenus.set(component.data.name, component);
+                console.log(`SelectMenu: ${component.data.name} has passed the handler.`);
+                break;
+
+              case "modalMenus":
+                modals.set(component.data.name, component);
+                console.log(`Modal: ${component.data.name} has passed the handler.`);
+                break;
+
+              default:
+                console.warn(`Unknown component folder: ${folder}`);
+                break;
+            }
+          })
+        );
       }
+
+      console.log("Successfully handled all components.");
+    } catch (error) {
+      console.error("Error while handling components:", error);
     }
   };
 };
