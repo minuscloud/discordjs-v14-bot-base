@@ -8,7 +8,6 @@ module.exports = (client) => {
 
       console.log("Starting to handle components...");
 
-      // Loop through each folder inside components
       for (const folder of componentFolders) {
         const componentFiles = fs
           .readdirSync(`./src/components/${folder}`)
