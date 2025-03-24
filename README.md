@@ -1,6 +1,6 @@
 # Discord.js v14 Bot Base
 
-A simple, easy-to-use bot base for building **Discord Bots** with **Discord.js v14.8.0**.
+A simple, easy-to-use bot base for building **Discord Bots** with **Discord.js v14.18.0**.
 
 This template comes with ready-to-use **command**, **event**, and **component handlers**, allowing you to easily create a bot that supports:
 
@@ -29,7 +29,7 @@ To get started with your own bot using this base, follow these simple steps:
 
 First, clone this repository to your local machine:
 
-git clone https://github.com/cloudfps/discordjs-v14-bot-base.git
+git clone https://github.com/minuscloud/discordjs-v14-bot-base.git
 
 2. Add your Bot Token
 
