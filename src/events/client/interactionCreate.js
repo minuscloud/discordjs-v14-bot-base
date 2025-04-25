@@ -21,17 +21,20 @@ module.exports = {
         await command.execute(interaction, client);
 
       } else if (interaction.isButton()) {
-        const button = buttons.get(customId);
+        const [buttonBaseId] = customId.split(":");
+        const button = buttons.get(buttonBaseId);
         if (!button) return;
-        await button.execute(interaction, client);
+        await button.execute(interaction, client)
 
       } else if (interaction.isStringSelectMenu()) {
-        const menu = selectMenus.get(customId);
+        const [menuBaseId] = customId.split(":");
+        const menu = selectMenus.get(menuBaseId);
         if (!menu) return;
         await menu.execute(interaction, client);
 
       } else if (type === InteractionType.ModalSubmit) {
-        const modal = modals.get(customId);
+        const [modalBaseId] = customId.split(":");
+        const modal = modals.get(modalBaseId);
         if (!modal) return;
         await modal.execute(interaction, client);
 
@@ -44,7 +47,7 @@ module.exports = {
         const command = commands.get(commandName);
         if (!command) return;
         await command.autocomplete(interaction, client);
-        
+
       }
     } catch (error) {
       await handleError(interaction, `Error processing interaction of type ${type}`);

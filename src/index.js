@@ -1,5 +1,4 @@
 require("dotenv").config();
-
 const { token } = process.env;
 const { Client, Collection, GatewayIntentBits } = require("discord.js");
 const fs = require("fs");
@@ -58,7 +57,6 @@ const initializeHandlers = async () => {
     console.error("Error initializing handlers:", error);
   }
 };
-
 const initBot = async () => {
   await initializeFunctions();
   await initializeHandlers();
