@@ -18,8 +18,6 @@
   },
   "homepage": "https://github.com/minuscloud/discordjs-v14-bot-base#readme",
   "dependencies": {
-    "@discordjs/rest": "latest",
-    "discord-api-types": "latest",
     "discord.js": "latest",
     "dotenv": "latest",
     "nodemon": "latest"
