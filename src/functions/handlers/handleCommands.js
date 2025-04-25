@@ -1,7 +1,6 @@
-const { REST } = require("@discordjs/rest");
-const { Routes } = require("discord-api-types/v9");
-const { SlashCommandBuilder } = require("discord.js");
+const { REST, Routes, SlashCommandBuilder } = require("discord.js");
 const fs = require("fs");
+const { clientId, token } = process.env;
 
 module.exports = (client) => {
   client.handleCommands = async () => {
@@ -31,8 +30,7 @@ module.exports = (client) => {
         );
       }
 
-      const clientId = "YOUR ID HERE"; // Replace with your client ID
-      const rest = new REST({ version: "10" }).setToken(process.env.token);
+      const rest = new REST().setToken(token);
 
       await rest.put(Routes.applicationCommands(clientId), {
         body: client.commandArray,
