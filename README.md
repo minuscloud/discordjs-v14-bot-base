@@ -1,18 +1,20 @@
 # Discord.js v14 Bot Base
 
-A simple, easy-to-use bot base for building **Discord Bots** with **Discord.js v14.18.0**.
+A simple, easy-to-use bot base for building **Discord Bots** with [Discord.js v14](https://discord.js.org/).
 
 This template comes with ready-to-use **command**, **event**, and **component handlers**, allowing you to easily create a bot that supports:
 
-- Slash commands
-- Buttons
-- Select Menus
-- Autocompletion
-- Modals
+- 🟢 Slash Commands
+- 🟦 Buttons
+- 🟣 Select Menus
+- 🟡 Autocompletion
+- 🟠 Modals
 
 The modular structure of this base makes it easy to extend with your own custom features!
 
-## Features
+---
+
+## ✨ Features
 
 - **Slash Commands**: Easily register and manage your bot’s commands.
 - **Buttons**: Implement interactive buttons in your bot’s messages.
@@ -20,47 +22,69 @@ The modular structure of this base makes it easy to extend with your own custom 
 - **Modals**: Display modals for custom inputs.
 - **Autocompletion**: Provide users with dynamic command suggestions.
 
-## Setup
+---
 
-To get started with your own bot using this base, follow these simple steps:
+## 🚀 Getting Started
+
+### 1. Clone the Repository
 
 ```bash
-1. Clone the repository
-
-First, clone this repository to your local machine:
-
 git clone https://github.com/minuscloud/discordjs-v14-bot-base.git
+cd discordjs-v14-bot-base
+```
 
-2. Add your Bot Token
+### 2. Configure Environment Variables
 
-In the root of the project, create a `.env` file and add your bot token like this:
+Create a `.env` file in the root of the project and add your bot token and client ID:
 
-TOKEN=your-bot-token-here
+```env
+# .env
+token=YOUR_BOT_TOKEN_HERE
+clientId=YOUR_CLIENT_ID_HERE
+```
 
-You can find your bot token by going to the **Discord Developer Portal**.
+You can find these values in the [Discord Developer Portal](https://discord.com/developers/applications).
 
-- [Discord Developer Portal](https://discord.com/developers/applications)
+### 3. Install Dependencies
 
-3. Add your Bot ID
-
-Locate and add your bot ID in the `src/functions/handlers/handleCommands.js` file. This ID is essential for registering slash commands properly.
-
-const clientId = "your-bot-id-here";
-
-You can get your bots ID from the Discord Developer Portal as well.
-
-4. Install dependencies
-
-Once your .env file is set up and your bot ID is added, install the necessary dependencies:
-
+```bash
 npm install
+```
 
-5. Run the Bot
-Finally, start your bot by running:
+### 4. Run the Bot
 
+```bash
 npm start
 ```
 
-## Contributing
-Contributions are always welcome! If you have suggestions, feature requests, or bug fixes, feel free to open an issue or a pull request.
+---
+
+## 🛠️ Project Structure
+
+```
+src/
+  commands/        # Slash command files
+  components/      # Buttons, select menus, modals
+  events/          # Event handlers
+  functions/       # Handler logic
+  index.js         # Bot entry point
+.env               # Environment variables
+```
+
+---
+
+## 📝 Contributing
+
+Contributions are always welcome!  
+If you have suggestions, feature requests, or bug fixes, feel free to open an [issue](https://github.com/minuscloud/discordjs-v14-bot-base/issues) or a pull request.
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+> Made with ❤️ by cloud
 

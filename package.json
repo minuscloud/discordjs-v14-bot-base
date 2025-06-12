@@ -1,29 +1,16 @@
 {
   "name": "discordjs-v14-bot-base",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "🚀 A powerful Discord.js v14 bot handler base to kickstart your bot development!",
-  "main": "./src/index.js",
-  "scripts": {
-    "start": "node .",
-    "dev": "nodemon ./src/index.js"
-  },
+  "author": "minuscloud",
+  "license": "MIT",
+  "homepage": "https://github.com/minuscloud/discordjs-v14-bot-base#readme",
   "repository": {
     "type": "git",
     "url": "https://github.com/minuscloud/discordjs-v14-bot-base.git"
   },
-  "author": "minuscloud",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/minuscloud/discordjs-v14-bot-base/issues"
-  },
-  "homepage": "https://github.com/minuscloud/discordjs-v14-bot-base#readme",
-  "dependencies": {
-    "discord.js": "latest",
-    "dotenv": "latest",
-    "nodemon": "latest"
-  },
-  "engines": {
-    "node": ">=18.0.0"
   },
   "keywords": [
     "discord",
@@ -31,5 +18,19 @@
     "discord.js",
     "bot-handler",
     "discordjs-v14"
-  ]
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "start": "node .",
+    "dev": "nodemon ./src/index.js"
+  },
+  "dependencies": {
+    "discord.js": "^14.14.1",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
 }
